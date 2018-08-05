@@ -1,5 +1,6 @@
 package cn.weit.happymo.reactor;
 
+import java.nio.channels.SelectionKey;
 import java.util.concurrent.*;
 
 /**
@@ -8,16 +9,30 @@ import java.util.concurrent.*;
 public class ThreadPoolReactor {
 	private ExecutorService executorService;
 
-	public ThreadPoolReactor(int poolSize)
-	{
-		this.executorService = Executors.newFixedThreadPool(poolSize);
-	}
-	//TODO 考虑用guava线程池 直接替换
-	public ThreadPoolReactor() {
+	private volatile static ThreadPoolReactor instance;
+
+	private ThreadPoolReactor() {
 		this.executorService = new ThreadPoolExecutor(10, 100,10,
 				TimeUnit.MINUTES,  new ArrayBlockingQueue(100),
-				(ThreadFactory) r -> new Thread(r, "reactor" + r.hashCode())
+				r -> new Thread(r, "reactor" + r.hashCode())
 		);
 	}
+
+	public static ThreadPoolReactor instance() {
+		if (instance == null) {
+			synchronized (ThreadPoolReactor.class) {
+				if (instance == null) {
+					instance = new ThreadPoolReactor();
+				}
+			}
+		}
+		return instance;
+	}
+
+	public void run(SelectionKey key) {
+
+	}
+
+
 
 }

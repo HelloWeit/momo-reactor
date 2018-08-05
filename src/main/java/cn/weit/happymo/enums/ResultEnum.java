@@ -9,8 +9,10 @@ import lombok.Getter;
 @Getter
 public enum ResultEnum {
 
-	THREAD_INTERRUPTED(1, "线程中断");
+	THREAD_INTERRUPTED(1, "线程中断"),
+	IO_EXCEPTION(2, "IO异常"),
 
+	;
 	private Integer code;
 
 	private String message;
