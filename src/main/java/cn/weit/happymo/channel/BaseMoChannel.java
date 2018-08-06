@@ -2,6 +2,8 @@ package cn.weit.happymo.channel;
 
 import lombok.Getter;
 
+import java.nio.channels.SelectionKey;
+
 /**
  * @author weitong
  */
@@ -12,14 +14,14 @@ public abstract class BaseMoChannel {
 		write();
 	}
 
-	private void doRead() {
-		read();
+	private void doRead(SelectionKey key) {
+		read(key);
 	}
 
 	abstract public void bind();
 
 	abstract public void write();
 
-	abstract public void read();
+	abstract public Object read(SelectionKey key);
 
 }
