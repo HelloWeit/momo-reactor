@@ -2,6 +2,7 @@ package cn.weit.happymo.reactor;
 
 import cn.weit.happymo.enums.ResultEnum;
 import cn.weit.happymo.exception.MoException;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.nio.channels.SelectionKey;
@@ -14,6 +15,7 @@ import java.util.Set;
  * @author weitong
  */
 //TODO 是否需要提出一个 Threadfactory 该factory增加线程异常的处理
+@Slf4j
 public class MoMainReactor {
 
 	private Selector selector;

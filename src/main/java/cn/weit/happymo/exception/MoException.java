@@ -16,4 +16,5 @@ public class MoException extends RuntimeException {
 	public MoException(ResultEnum resultEnum) {
 		this(resultEnum.getCode(), resultEnum.getMessage());
 	}
+
 }
