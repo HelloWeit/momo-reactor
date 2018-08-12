@@ -1,14 +1,12 @@
 package cn.weit.happymo.reactor;
 
+import cn.weit.happymo.channel.BaseMoChannel;
 import cn.weit.happymo.enums.ResultEnum;
 import cn.weit.happymo.exception.MoException;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
-import java.nio.channels.ServerSocketChannel;
-import java.nio.channels.SocketChannel;
+import java.nio.channels.*;
 import java.util.Set;
 
 /**
@@ -55,6 +53,11 @@ public class MoMainReactor {
 				});
 			}
 		}
+	}
+
+	//TODO channel需要注册到 selectKey中
+	public MoMainReactor withChannel(BaseMoChannel channel) {
+		return this;
 	}
 
 

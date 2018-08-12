@@ -2,6 +2,7 @@ package cn.weit.happymo.channel;
 
 import cn.weit.happymo.enums.ResultEnum;
 import cn.weit.happymo.exception.MoException;
+import cn.weit.happymo.handler.BaseMoHandler;
 import cn.weit.happymo.reactor.MoReactor;
 import lombok.Data;
 import lombok.Getter;
@@ -26,6 +27,11 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  * @author weitong
  */
 public class MoTcpChannel extends BaseMoChannel {
+
+
+	public MoTcpChannel(BaseMoHandler handler) {
+		setHandler(handler);
+	}
 
 	@Override
 	public void bind(SelectionKey key, int port ){

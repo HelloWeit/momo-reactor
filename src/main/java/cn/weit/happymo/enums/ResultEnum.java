@@ -13,6 +13,8 @@ public enum ResultEnum {
 	IO_EXCEPTION(2, "IO异常"),
 	SOCKET_CLOSE(3, "socket关闭"),
 	BIND_FAILED(4, "绑定失败"),
+	INIT_ERROR(5, "初始化失败"),
+
 
 	;
 	private Integer code;

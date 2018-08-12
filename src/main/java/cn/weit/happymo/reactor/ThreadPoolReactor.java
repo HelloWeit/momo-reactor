@@ -1,5 +1,7 @@
 package cn.weit.happymo.reactor;
 
+import cn.weit.happymo.dispatch.MoThreadPoolDispatcher;
+
 import java.nio.channels.SelectionKey;
 import java.util.concurrent.*;
 
@@ -30,7 +32,7 @@ public class ThreadPoolReactor {
 	}
 
 	public void run(SelectionKey key) {
-		//TODO 添加任务到线程池。
+		executorService.submit(new MoReactor(key, new MoThreadPoolDispatcher()));
 	}
 
 
