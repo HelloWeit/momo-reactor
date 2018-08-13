@@ -7,6 +7,7 @@ import cn.weit.happymo.reactor.MoReactor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -26,19 +27,22 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 /**
  * @author weitong
  */
+@Slf4j
 public class MoTcpChannel extends BaseMoChannel {
-
+	@Getter
+	private ServerSocketChannel channel;
 
 	public MoTcpChannel(BaseMoHandler handler) {
 		setHandler(handler);
 	}
 
 	@Override
-	public void bind(SelectionKey key, int port ){
-		SocketChannel channel = (SocketChannel) key.channel();
+	public void bind(int port){
 		try {
+			this.channel = ServerSocketChannel.open();
 			channel.socket().bind(new InetSocketAddress(InetAddress.getLocalHost(), port));
 			channel.configureBlocking(false);
+			log.info("bind port:{}", port);
 		} catch (Exception e) {
 			throw new MoException(ResultEnum.BIND_FAILED);
 		}

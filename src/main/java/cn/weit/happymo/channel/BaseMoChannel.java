@@ -26,7 +26,7 @@ public abstract class BaseMoChannel {
 	@Setter
 	private BaseMoHandler handler;
 
-	abstract public void bind(SelectionKey key, int port) throws IOException;
+	abstract public void bind(int port) throws IOException;
 
 	abstract public Object read(SelectionKey key);
 
